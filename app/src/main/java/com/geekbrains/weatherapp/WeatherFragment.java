@@ -20,6 +20,8 @@ import org.json.JSONObject;
 
 import java.util.Locale;
 
+import javax.crypto.spec.PSource;
+
 public class WeatherFragment extends Fragment {
     TextView cityField;
     TextView currentTemperatureField;
@@ -34,6 +36,7 @@ public class WeatherFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_weather, container, false);
+        updateWeatherData(new CityPreference(getActivity()).getCity());
         initViews(view);
         return view;
     }
@@ -46,6 +49,7 @@ public class WeatherFragment extends Fragment {
     }
 
     public void changeCity(String city) {
+
         updateWeatherData(city);
     }
 
@@ -55,6 +59,7 @@ public class WeatherFragment extends Fragment {
             public void run() {
                 final JSONObject json = RemoteFetch.getJSON(getActivity(), city);
                 if (json == null) {
+
                     handler.post(new Runnable() {
                         public void run() {
                             Toast.makeText(getActivity(),
@@ -68,6 +73,7 @@ public class WeatherFragment extends Fragment {
                         public void run() {
                             renderWeather(json);
                         }
+
                     });
                 }
             }
@@ -89,7 +95,7 @@ public class WeatherFragment extends Fragment {
                             "\n" + "Pressure: " + main.getString("pressure") + " hPa");
 
             currentTemperatureField.setText(
-                    String.format("%.2f", main.getDouble("temp")) + " ℃");
+                    String.format("%.1f", main.getDouble("temp")) + " ℃");
 
         } catch (Exception e) {
             Log.e("SimpleWeather", "One or more fields not found in the JSON data");

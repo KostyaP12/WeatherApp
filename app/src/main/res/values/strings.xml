@@ -3,4 +3,7 @@
     <string name="change_city">Change City</string>
     <string name="city_not_found">City not found</string>
     <string name="api_key">980ab08ba0840af1e1d29c95ced1fe6b</string>
+    <string name="weather">Weather</string>
+    <string name="about_app">About Application</string>
+    <string name="AboutAppTextView">Разработано студентом GeekBrains</string>
 </resources>

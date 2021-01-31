@@ -16,7 +16,7 @@ import javax.net.ssl.HttpsURLConnection;
 public class RemoteFetch {
 
     private static final String OPEN_WEATHER_MAP_API =
-            "https://api.openweathermap.org/data/2.5/weather?q=%s&units=metric&appid=";
+            "https://api.openweathermap.org/data/2.5/weather?q=%s&units=metric,RU&appid=";
 
     public static JSONObject getJSON(Context context, String city) {
         String url = String.format(OPEN_WEATHER_MAP_API, city) + context.getString(R.string.api_key);
