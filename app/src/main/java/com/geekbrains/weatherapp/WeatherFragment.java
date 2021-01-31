@@ -34,6 +34,7 @@ public class WeatherFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_weather, container, false);
+        updateWeatherData(new CityPreference(getActivity()).getCity());
         initViews(view);
         return view;
     }
